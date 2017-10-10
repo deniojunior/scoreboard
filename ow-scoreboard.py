@@ -1,5 +1,7 @@
 import tkinter as tk
 import ctypes
+from datetime import datetime
+from threading import Timer
 
 SCREEN_WIDTH = ctypes.windll.user32.GetSystemMetrics(0)
 SCREEN_HEIGHT = ctypes.windll.user32.GetSystemMetrics(1)
@@ -7,13 +9,13 @@ SCREEN_HEIGHT = ctypes.windll.user32.GetSystemMetrics(1)
 APP_HEIGHT = 200
 APP_WIDTH = 300
 BUTTON_SIZE = 30
-#TEXT_BACKGROUND ='#191919'
 BACKGROUND ='white'
 NUMBER_SPACE = '    '
 
 ONE_DAY = 1000*60*60*24
 
 days = 0
+timer = 0
 
 def create_canvas():
     window = tk.Tk()
@@ -25,25 +27,42 @@ def create_canvas():
     
     return (window, canvas)
 
-def add_one(window, canvas, text, add):
+def add_one(canvas, text):
     global days
     
-    if add:
-        days = days + 1
-        canvas.itemconfig(text, text=NUMBER_SPACE+str(days).zfill(2))
-        canvas.update()
+    #if add:
+    days = days + 1
+    canvas.itemconfig(text, text=NUMBER_SPACE+str(days).zfill(2))
+    canvas.update()
         
-    window.after(ONE_DAY, lambda: add_one(window, canvas, text, True))
+    #window.after(ONE_DAY, lambda: add_one(window, canvas, text, True))
 
 def naty_check(canvas, text):
     global days
+    global timer
+
     days = 0
     canvas.itemconfig(text, text=NUMBER_SPACE+str(days).zfill(2))
     canvas.update()
+    timer.cancel()
+    timer.join()
+    add_one_after_onde_day(canvas, text)
+
+def add_one_after_onde_day(canvas, text):
+    global timer
+
+    x = datetime.today()
+    y = x.replace(day=x.day + 1, hour=22, minute=0, second=0, microsecond=0)
+    delta_t = y - x
+
+    secs = delta_t.seconds + 1
+
+    timer = Timer(secs, lambda: add_one(canvas, text))
+    timer.start()
     
 def main():
     global days
-    
+
     window, canvas = create_canvas()
     font = ('Verdana', 14)
     canvas.create_text(10, 10, anchor='nw', text='   We have proudly worked ', width=APP_WIDTH, font=font, fill='black', justify=tk.CENTER)
@@ -53,9 +72,9 @@ def main():
 
     font = ('Verdana', 50)
     text = canvas.create_text(10, 40, anchor='nw', text=NUMBER_SPACE+str(days).zfill(2), width=APP_WIDTH, font=font, fill='green', justify=tk.CENTER)
-    
-    add_one(window, canvas, text, False)
-    
+
+    add_one_after_onde_day(canvas, text)
+
     window.mainloop()
 
 if __name__ == '__main__':
