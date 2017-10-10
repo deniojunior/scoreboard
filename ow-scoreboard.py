@@ -29,13 +29,10 @@ def create_canvas():
 
 def add_one(canvas, text):
     global days
-    
-    #if add:
+
     days = days + 1
     canvas.itemconfig(text, text=NUMBER_SPACE+str(days).zfill(2))
     canvas.update()
-        
-    #window.after(ONE_DAY, lambda: add_one(window, canvas, text, True))
 
 def naty_check(canvas, text):
     global days
