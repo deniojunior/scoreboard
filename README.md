@@ -1,12 +1,12 @@
 # ow-scoreboard
 Scorebord to show errors metrics.
 
-# INSTALL
+# Install
 ```bash
 ./bin/install
 ```
 
-# RUN
+# Run
 ```bash
 ./bin/start
 ```
