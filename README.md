@@ -2,6 +2,9 @@
 Scorebord to show errors metrics.
 
 # Install
+
+Assuming you are in the ow-scoreboard root directory, run:
 ```bash
-start /bin/install.bat
+cd bin
+start install.bat
 ```
