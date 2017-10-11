@@ -1,9 +1,9 @@
 import tkinter as tk
 import ctypes
 import os
-import playsound
 from datetime import datetime
 from threading import Timer
+from playsound import playsound
 
 SCREEN_WIDTH = ctypes.windll.user32.GetSystemMetrics(0)
 SCREEN_HEIGHT = ctypes.windll.user32.GetSystemMetrics(1)
