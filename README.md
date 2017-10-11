@@ -2,11 +2,11 @@
 Scorebord to show errors metrics.
 
 # INSTALL
-'''bash
+```bash
 ./bin/install
-'''
+```
 
 # RUN
-'''bash
+```bash
 ./bin/start
-'''
+```
