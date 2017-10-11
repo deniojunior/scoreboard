@@ -1,5 +1,7 @@
 import tkinter as tk
 import ctypes
+import os
+import playsound
 from datetime import datetime
 from threading import Timer
 
@@ -12,7 +14,7 @@ BUTTON_SIZE = 30
 BACKGROUND ='white'
 NUMBER_SPACE = '    '
 
-ONE_DAY = 1000*60*60*24
+ONE_DAY = 1000*60*60#*24
 
 days = 0
 timer = 0
@@ -41,8 +43,12 @@ def naty_check(canvas, text):
     days = 0
     canvas.itemconfig(text, text=NUMBER_SPACE+str(days).zfill(2))
     canvas.update()
+
     timer.cancel()
     timer.join()
+    path = os.path.dirname(os.path.realpath(__file__))
+    print(path)
+    playsound(path + "\\audio\\naty-check.mp3")
     add_one_after_onde_day(canvas, text)
 
 def add_one_after_onde_day(canvas, text):
