@@ -59,11 +59,14 @@ def naty_check(canvas, days_with_no_check_obj, check_per_week_obj):
 
     timer.cancel()
     timer.join()
-    path = os.path.dirname(os.path.realpath(__file__))
-    playsound(path + "\\audio\\naty-check.mp3")
+
     week = week + 1
     update_object(canvas, check_per_week_obj, week)
     add_one_after_one_day(canvas, days_with_no_check_obj, check_per_week_obj)
+
+    path = os.path.dirname(os.path.realpath(__file__))
+    playsound(path + "\\audio\\naty-check.mp3")
+
 
 def add_one_after_one_day(canvas, days_with_no_check_obj, check_per_week_obj):
     global timer
