@@ -55,6 +55,7 @@ def naty_check(canvas, days_with_no_check_obj, check_per_week_obj):
     days = 0
     canvas.itemconfig(days_with_no_check_obj, text=str(days).zfill(2))
     canvas.update()
+    days = -1 # Cancel the add on the day NatyCheck happen
 
     timer.cancel()
     timer.join()
