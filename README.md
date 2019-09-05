@@ -1,9 +1,9 @@
-# ow-scoreboard
+# scoreboard
 Scorebord to show errors metrics.
 
 # Install
 
-Assuming you are in the ow-scoreboard root directory, run:
+Assuming you are in the scoreboard root directory, run:
 ```bash
 cd bin
 start install.bat
